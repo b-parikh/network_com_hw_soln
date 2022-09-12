@@ -9,23 +9,23 @@ use network_com_hw_soln::utils;
 
 #[derive(Parser, Debug)]
 struct Args {
-    // path of file to send
+    /// path of file to send
     #[clap(long, value_parser)]
     stl_file_path: String,
 
-    // The communication mechanism the client uses to send data to the server.
+    /// The communication mechanism the client uses to send data to the server.
     #[clap(long, value_enum)]
     client_transport_protocol: utils::Transport,
 
-    // The communication mechanism the server should use to return data back to the client.
+    /// The communication mechanism the server should use to return data back to the client.
     #[clap(long, value_enum)]
     server_transport_protocol: utils::Transport,
 
-    // Where the client expects responses from the server.
+    /// Socket where the client expects responses from the server. Must be in quotes.
     #[clap(long, value_parser)]
     client_recv_socket_addr: SocketAddr,
 
-    // Where the server expects traffic from the client.
+    /// Socket where the server expects traffic from the client. Must be in quotes.
     #[clap(long, value_parser)]
     server_recv_socket_addr: SocketAddr,
 }
