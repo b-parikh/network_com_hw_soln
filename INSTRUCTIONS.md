@@ -74,6 +74,19 @@ to verify that there is no change between the original file and the received fil
 ### Appendix
 #### Shortcuts
 1. The server can handle only one message, and it cannot handle multiple concurrent client requests.
+
+Fixing this would require running the server in an infinite loop and listening for new connections on its passive open socket. We can handle multiple clients
+by passing requests off to request handlers in separate concurrent tasks. To minimize the context switch between OS threads, we can use an asynchronous runtime
+such as Tokio.
+
+
 2. The client and the server have to be started with the correct CLI arguments to make sure they communicate properly. For example, if the client was
-started with `--server-transport-protocol tcp` and the server was started with `--server-transport-protocol nng`, the processes would fail to communicate.
+
+The biggest risk here is that it is up to humans to make sure that communication protocols line up on the sender and the receiver. Instead, 
+we can use `std::select!` as well as communication channels (`std::sync::mpsc`) on both the server side and the client side to listen on multiple sockets. The first
+unblocked socket can be assumed to use the correct protocol. 
+
 3. Lack of generics used to abstract network protocols and transport mechanisms.
+
+Adding new transport protocol requires a bit more overhead in terms of lines of code. Building an API with generics would be the next move torwards making the process
+of adding new protocols more seamless.
