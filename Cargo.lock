@@ -32,6 +32,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
 
 [[package]]
+name = "cc"
+version = "1.0.73"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2fff2a6927b3bb87f9595d67196a70493f627687a71d87a0d692242c33f58c11"
+
+[[package]]
+name = "cfg-if"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
+
+[[package]]
 name = "clap"
 version = "3.2.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -68,6 +80,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2850f2f5a82cbf437dd5af4d49848fbdfc27c157c3d010345776f952765261c5"
 dependencies = [
  "os_str_bytes",
+]
+
+[[package]]
+name = "cmake"
+version = "0.1.48"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e8ad8cef104ac57b68b89df3208164d228503abbdce70f6880ffa3d970e7443a"
+dependencies = [
+ "cc",
 ]
 
 [[package]]
@@ -108,11 +129,41 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8371e4e5341c3a96db127eb2465ac681ced4c433e01dd0e938adbef26ba93ba5"
 
 [[package]]
+name = "log"
+version = "0.4.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "abb12e687cfb44aa40f41fc3978ef76448f9b6038cad6aef4259d3c095a2382e"
+dependencies = [
+ "cfg-if",
+]
+
+[[package]]
 name = "network_com_hw_soln"
 version = "0.1.0"
 dependencies = [
  "anyhow",
  "clap",
+ "nng",
+]
+
+[[package]]
+name = "nng"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "20a18ed7ec1c8ff1658bcfea2ce76dcedf8be21dd9e8dd2e9762ba9632d16203"
+dependencies = [
+ "log",
+ "nng-sys",
+]
+
+[[package]]
+name = "nng-sys"
+version = "1.4.0-rc.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "50d0e7f39a8fd1792a710da9351320e864dc799cf439960e332c977b2f876da6"
+dependencies = [
+ "cmake",
+ "version_check",
 ]
 
 [[package]]
