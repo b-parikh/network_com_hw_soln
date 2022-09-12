@@ -16,7 +16,7 @@ understand the extensions that can be made to the project.
 Build this code within a Docker container to ensure that the correct dependencies are pulled in.
 
 ```
-sudo docker build --pull --file Dockerfile -t network_com_hw_soln:latest .
+docker build --pull --file Dockerfile -t network_com_hw_soln:latest .
 ```
 
 ### Enter Docker container
@@ -70,6 +70,9 @@ diff output.stl cad_mesh.stl
 ```
 to verify that there is no change between the original file and the received file.
 
+### Troubleshooting
+1. If Docker is returning `Permission denied` errors, make sure your $USER is within the "Docker" linux group. You can also run all the Docker commands with `sudo`.
+2. If you build the code OUTSIDE of the Docker container after it has been built in the Docker container, you may see a build failure and a `Permission denied` error. To fix this, run `sudo rm -rf ./target` with the root of the directory and try to build again.
 
 ### Appendix
 #### Shortcuts
