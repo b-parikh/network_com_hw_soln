@@ -26,7 +26,7 @@ Start an interactive shell session in the built Docker container:
 docker run -v $PWD:/mnt/network_com_hw_soln --network host -it --entrypoint /bin/bash network_com_hw_soln:latest
 ```
 
-Then, start another interactive shell session in the same Docker container:
+Then, in another terminal session, start another interactive shell session in the same Docker container:
 ```
 docker ps # Find the name of the running container
 docker exec -it ${NAME_OF_RUNNING_CONTAINER} /bin/bash
@@ -41,6 +41,7 @@ it's built, you should see two binaries: `/mnt/network_com_hw_soln/target/debug/
 
 Run
 ```
+cd /mnt/network_com_hw_soln
 ./target/debug/server --help
 ./target/debug/client --help
 ```
